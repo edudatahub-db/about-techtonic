@@ -197,23 +197,22 @@
                   <h4>Schedule Consultation</h4>
                   <p>Ready to build your custom website? Let’s discuss your goals and create a solution that fits your needs.</p>
                 </div>
-                <form action="forms/consultation.php" method="post" class="php-email-form">
+                <form name="consultation" netlify netlify-honeypot="bot-field" hidden>
                   <div class="form-group">
-                    <input type="text" name="name" class="form-input" placeholder="Full Name" required="">
+                      <input type="text" name="name" class="form-input" placeholder="Full Name" required>
                   </div>
                   <div class="form-group">
-                    <input type="email" name="email" class="form-input" placeholder="Email Address" required="">
+                      <input type="email" name="email" class="form-input" placeholder="Email Address" required>
                   </div>
                   <div class="form-group">
-                    <input type="tel" name="phone" class="form-input" placeholder="Phone Number">
+                      <input type="tel" name="phone" class="form-input" placeholder="Phone Number">
                   </div>
                   <input type="hidden" name="subject" value="Custom Web Development Consultation">
                   <div class="form-group">
                     <textarea name="message" class="form-input" rows="4" placeholder="Tell us about your website goals..." required=""></textarea>
                   </div>
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your consultation request has been sent. Thank you!</div>
+                    <input type="hidden" name="form-name" value="consultation">
+                    <div class="sent-message">Your consultation request has been sent. Thank you!</div>
                   <button type="submit" class="btn-consultation">
                     <span>Book Free Consultation</span>
                     <i class="bi bi-arrow-right"></i>
