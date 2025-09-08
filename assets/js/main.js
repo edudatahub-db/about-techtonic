@@ -7,6 +7,45 @@
 */
 
 (function() {
+  /**
+   * AJAX Consultation Form Submission
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.php-email-form').forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const loading = form.querySelector('.loading');
+        const errorMsg = form.querySelector('.error-message');
+        const sentMsg = form.querySelector('.sent-message');
+        loading.style.display = 'block';
+        errorMsg.style.display = 'none';
+        sentMsg.style.display = 'none';
+
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          loading.style.display = 'none';
+          if (data.status === 'success') {
+            sentMsg.textContent = data.message;
+            sentMsg.style.display = 'block';
+            form.reset();
+          } else {
+            errorMsg.textContent = data.message;
+            errorMsg.style.display = 'block';
+          }
+        })
+        .catch(() => {
+          loading.style.display = 'none';
+          errorMsg.textContent = 'Could not send request. Please try again later.';
+          errorMsg.style.display = 'block';
+        });
+      });
+    });
+  });
   "use strict";
 
   /**
